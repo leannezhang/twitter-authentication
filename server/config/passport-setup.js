@@ -8,10 +8,10 @@ passport.use(
         consumerKey: keys.TWITTER_CONSUMER_KEY,
         consumerSecret: keys.TWITTER_CONSUMER_SECRET,
         callbackURL: '/auth/twitter/redirect'
-    }, (token, tokenSecret, profile, cb) => {
+    }, (token, tokenSecret, profile, done) => {
         // passport callback function
         console.log('profile', profile);
-        console.log('cb', cb)
+        console.log('done', done)
     })
 )
 

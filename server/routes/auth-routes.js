@@ -16,9 +16,10 @@ router.get('/twitter', passport.authenticate('twitter'));
 
 // redirect to home page after successfully login via twitter
 router.get('/twitter/redirect', 
-  (req, res) => {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-  });
+    passport.authenticate('twitter'),
+    (req, res) => {
+        // Successful authentication, redirect home.
+        res.redirect('/');
+    });
 
 module.exports = router;
