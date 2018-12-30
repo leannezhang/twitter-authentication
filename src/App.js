@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import signInButton from './sign-in-with-twitter-gray.png';
+import { obtainRequestToken } from './api/index'
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={signInButton} alt="signInButton" onClick={this._handleSignInClick}/>
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
@@ -22,6 +23,11 @@ class App extends Component {
         </header>
       </div>
     );
+  }
+
+  _handleSignInClick = () => {
+    alert('sign in...');
+    obtainRequestToken();
   }
 }
 
