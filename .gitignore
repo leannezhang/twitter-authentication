@@ -25,4 +25,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # config files
-./server/config/tokens.js
+/server/config/keys.js
