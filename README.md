@@ -1,4 +1,4 @@
-Authenticate Twitter via passport
+# Authenticate Twitter via passport
 
 ### Server
 
@@ -8,6 +8,20 @@ Run on express server
 cd server/
 nodemon index.js
 ```
+
+Go to localhost:4000
+
+### Client
+
+```
+cd client/
+yarn install
+yarn run start
+```
+
+Go to localhost:3000
+
+---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
