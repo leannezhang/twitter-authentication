@@ -8,7 +8,8 @@ router.get('/login', (req, res) => {
 
 // auth logout
 router.get('/logout', (req, res) => {
-    res.send('logging out')
+    req.logout();
+    res.redirect('/');
 })
 
 // auth with twitter
@@ -18,8 +19,9 @@ router.get('/twitter', passport.authenticate('twitter'));
 router.get('/twitter/redirect', 
     passport.authenticate('twitter'),
     (req, res) => {
+        res.json(req.user);
         // Successful authentication, redirect home.
-        res.redirect('/');
+        // res.redirect('/');
     });
 
 module.exports = router;
