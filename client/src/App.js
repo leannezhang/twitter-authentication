@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import signInButton from './sign-in-with-twitter-gray.png';
-import { obtainRequestToken } from './api/index'
+import React, { Component } from "react";
+import "./App.css";
+import signInButton from "./sign-in-with-twitter-gray.png";
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={signInButton} alt="signInButton" onClick={this._handleSignInClick}/>
+          <img
+            src={signInButton}
+            alt="signInButton"
+            onClick={this._handleSignInClick}
+          />
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
@@ -25,10 +27,17 @@ class App extends Component {
     );
   }
 
+  // create a profile page
+  // change this to be the login page
   _handleSignInClick = () => {
-    alert('sign in...');
-    obtainRequestToken();
-  }
+    // wrap this in a promise
+    // when promise is fulfilled, get the path name from the window
+    // if it's login/success -> route to our user profile page
+    // else: login/failed -> route to our login page
+    const authenticationWindow = window.open(
+      "http://localhost:4000/auth/twitter"
+    );
+  };
 }
 
 export default App;

@@ -11,7 +11,7 @@ const keys = require("./config/keys");
 const cors = require("cors");
 
 // set up view engine
-app.set("view engine", "ejs");
+// app.set("view engine", "ejs");
 
 // connect to mongodb
 mongoose.connect(
@@ -57,9 +57,10 @@ app.use(
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE"
   })
 );
+
 app.use("/auth", authRoutes);
 
-app.get("/", (req, res) => res.render("home"));
+app.get("/", (req, res) => res.send("home"));
 
 // connect react to nodejs express server
 app.listen(port, () => console.log(`Server is running on port ${port}!`));
