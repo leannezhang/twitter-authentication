@@ -1,24 +1,6 @@
 const router = require("express").Router();
 const passport = require("passport");
 
-// optional: auth login
-// if it's already login, send the profile response,
-// otherwise, send a 401 response that the user is not authenticated
-router.get("/login", (req, res) => {
-  if (req.user) {
-    res.status(200).json({
-      authenticated: true,
-      message: "user successfully authenticated",
-      user: req.user
-    });
-  } else {
-    res.status(401).json({
-      authenticated: false,
-      message: "user has not been authenticated"
-    });
-  }
-});
-
 // when login is successful, retrieve user info
 router.get("/login/success", (req, res) => {
   res.status(200).json({
@@ -43,7 +25,7 @@ router.get("/logout", (req, res) => {
 });
 
 // auth with twitter
-router.get("/twitter", passport.authenticate("twitter", { display: "popup" }));
+router.get("/twitter", passport.authenticate("twitter"));
 
 // redirect to home page after successfully login via twitter
 router.get(

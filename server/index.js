@@ -22,15 +22,17 @@ mongoose.connect(
 );
 
 // // set up routes
-// app.use(session({
-//     secret: 'secret',
+// app.use(
+//   session({
+//     secret: "secret",
 //     resave: false,
 //     saveUninitialized: true
-// }));
+//   })
+// );
 
+// not sure how this cookie session works.
 app.use(
   cookieSession({
-    name: "session",
     keys: [keys.COOKIE_KEY],
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
   })
@@ -60,7 +62,29 @@ app.use(
 
 app.use("/auth", authRoutes);
 
-app.get("/", (req, res) => res.send("home"));
+const authCheck = (req, res, next) => {
+  if (!req.user) {
+    res.status(401).json({
+      authenticated: false,
+      message: "user has not been authenticated"
+    });
+  } else {
+    next();
+  }
+};
+
+// optional: hoem page
+// if it's already login, send the profile response,
+// otherwise, send a 401 response that the user is not authenticated
+// authCheck before navigating to home page
+// question - how is cookie send to the browser?
+app.get("/", authCheck, (req, res) => {
+  res.status(200).json({
+    authenticated: true,
+    message: "user successfully authenticated",
+    user: req.user
+  });
+});
 
 // connect react to nodejs express server
 app.listen(port, () => console.log(`Server is running on port ${port}!`));
