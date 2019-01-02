@@ -39,10 +39,10 @@ passport.use(
           profileImageUrl: profile._json.profile_image_url
         }).save();
         if (newUser) {
-          return done(null, currentUser);
+          done(null, newUser);
         }
       }
-      return done(null, currentUser);
+      done(null, currentUser);
     }
   )
 );

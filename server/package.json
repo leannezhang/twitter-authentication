@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "cookie-session": "^2.0.0-beta.3",
+    "cors": "^2.8.5",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
