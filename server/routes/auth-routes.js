@@ -3,11 +3,16 @@ const passport = require("passport");
 
 // when login is successful, retrieve user info
 router.get("/login/success", (req, res) => {
-  return res.json({
-    success: true,
-    message: "user has successfully authenticated",
-    user: req.user
-  });
+  if (req.user) {
+    res.json({
+      success: true,
+      message: "user has successfully authenticated",
+      user: req.user,
+      cookies: req.cookies
+    });
+  } else {
+    res.redirect("/login/failed");
+  }
 });
 
 // when login failed

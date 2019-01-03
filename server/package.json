@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "^1.4.3",
     "cookie-session": "^2.0.0-beta.3",
     "cors": "^2.8.5",
     "ejs": "^2.6.1",

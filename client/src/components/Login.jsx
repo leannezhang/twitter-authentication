@@ -13,7 +13,6 @@ export default class Login extends Component {
       </div>
     );
   }
-
   // create a profile page
   // change this to be the login page
   _handleSignInClick = () => {
@@ -25,7 +24,7 @@ export default class Login extends Component {
     // else: login/failed -> route to our login page
     const authenticationWindow = window.open(
       "http://localhost:4000/auth/twitter",
-      "_self",
+      "authenticationWindow",
       "height=500,width=400"
     );
 
@@ -42,11 +41,5 @@ export default class Login extends Component {
       // authenticated succeed
       //   handleSetAuthentication(!authenticated);
     });
-    // if (window.focus) {
-    //   authenticationWindow.focus();
-    // }
-    // setTimeout(() => {
-    //   alert(authenticationWindow.location.pathname);
-    // }, 1000);
   };
 }
