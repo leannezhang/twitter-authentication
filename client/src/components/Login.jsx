@@ -24,8 +24,29 @@ export default class Login extends Component {
     // if it's login/success -> route to our user profile page
     // else: login/failed -> route to our login page
     const authenticationWindow = window.open(
-      "http://localhost:4000/auth/twitter"
+      "http://localhost:4000/auth/twitter",
+      "_self",
+      "height=500,width=400"
     );
-    handleSetAuthentication(!authenticated);
+
+    const authenticatedPromise = new Promise((resolve, reject) => {
+      const timer = setInterval(() => {
+        if (authenticationWindow.closed) {
+          clearInterval(timer);
+          resolve();
+        }
+      }, 1000);
+    });
+
+    authenticatedPromise.then(() => {
+      // authenticated succeed
+      //   handleSetAuthentication(!authenticated);
+    });
+    // if (window.focus) {
+    //   authenticationWindow.focus();
+    // }
+    // setTimeout(() => {
+    //   alert(authenticationWindow.location.pathname);
+    // }, 1000);
   };
 }
