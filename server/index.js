@@ -22,19 +22,13 @@ mongoose.connect(
   }
 );
 
-// app.use(
-//   session({
-//     secret: "secret",
-//     resave: false,
-//     saveUninitialized: true
-//   })
-// );
-
-// not sure how this cookie session works.
 app.use(
-  cookieSession({
-    keys: [keys.COOKIE_KEY],
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  session({
+    secret: "secret",
+    key: "sid",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
   })
 );
 
