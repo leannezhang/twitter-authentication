@@ -28,3 +28,5 @@ yarn-error.log*
 # server 
 /server/config/keys.js
 /server/node_modules
+/client/build/
+node_modules
