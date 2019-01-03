@@ -20,7 +20,6 @@
 
 # client
 /client/node_modules
-/client/public
 
 npm-debug.log*
 yarn-debug.log*
