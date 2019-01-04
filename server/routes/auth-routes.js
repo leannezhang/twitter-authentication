@@ -30,7 +30,7 @@ router.get("/logout", (req, res) => {
 });
 
 // auth with twitter
-router.get("/twitter", passport.authenticate("twitter", { display: "popup" }));
+router.get("/twitter", passport.authenticate("twitter"));
 
 // redirect to home page after successfully login via twitter
 router.get(
