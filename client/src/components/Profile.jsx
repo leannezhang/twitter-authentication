@@ -24,7 +24,6 @@ export default class Profile extends Component {
       .then(response => response.json())
       .then(responseJson => {
         this.setState({ user: responseJson.user });
-        console.log("fetch responseJSON");
       })
       .catch(error => {
         console.error(error);
@@ -35,18 +34,20 @@ export default class Profile extends Component {
       <div>
         <header>User profile</header>
         <table>
-          <tr>
-            <th>Name</th>
-            <th>ScreenName</th>
-            <th>Profile Picture</th>
-          </tr>
-          <tr>
-            <td>{this.state.user.name}</td>
-            <td>{`@${this.state.user.screenName}`}</td>
-            <td>
-              <img src={this.state.user.profileImageUrl} alt="profileImage" />
-            </td>
-          </tr>
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <th>ScreenName</th>
+              <th>Profile Picture</th>
+            </tr>
+            <tr>
+              <td>{this.state.user.name}</td>
+              <td>{`@${this.state.user.screenName}`}</td>
+              <td>
+                <img src={this.state.user.profileImageUrl} alt="profileImage" />
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
     );

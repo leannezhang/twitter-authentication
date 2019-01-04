@@ -20,12 +20,6 @@ class App extends Component {
       />
     );
   }
-
-  _handleIsAuthenticated = isSuccessfullyAuthenticated => {
-    this.setState({
-      authenticated: isSuccessfullyAuthenticated
-    });
-  };
 }
 
 export default App;

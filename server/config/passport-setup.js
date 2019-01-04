@@ -7,14 +7,18 @@ const User = require("../models/user-model");
 // so the browser will remember the user when login
 passport.serializeUser((user, done) => {
   // parameters: error, user
-  done(new Error("Failed to serialize an user"), user.id);
+  done(null, user.id);
 });
 
 // // deserialize the cookieUserId to user in the database
 passport.deserializeUser((id, done) => {
-  User.findById(id).then(user => {
-    done(new Error("Failed to deserialize an user"), user);
-  });
+  User.findById(id)
+    .then(user => {
+      done(null, user);
+    })
+    .catch(e => {
+      done(new Error("Failed to deserialize an user"));
+    });
 });
 
 passport.use(
@@ -39,10 +43,10 @@ passport.use(
           profileImageUrl: profile._json.profile_image_url
         }).save();
         if (newUser) {
-          done(new Error("Failed to create a new user"), newUser);
+          done(null, newUser);
         }
       }
-      done(new Error("Failed to find current user"), currentUser);
+      done(null, currentUser);
     }
   )
 );

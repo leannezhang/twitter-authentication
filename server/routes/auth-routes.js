@@ -30,13 +30,13 @@ router.get("/logout", (req, res) => {
 });
 
 // auth with twitter
-router.get("/twitter", passport.authenticate("twitter"));
+router.get("/twitter", passport.authenticate("twitter", { display: "popup" }));
 
 // redirect to home page after successfully login via twitter
 router.get(
   "/twitter/redirect",
   passport.authenticate("twitter", {
-    successRedirect: "/auth/login/success",
+    successRedirect: "http://localhost:3000",
     failureRedirect: "/auth/login/failed"
   })
 );

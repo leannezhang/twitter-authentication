@@ -55,6 +55,7 @@ app.use(
     credentials: true // allow session cookie from browser to pass through
   })
 );
+//app.options("*", cors());
 
 // set up routes
 app.use("/auth", authRoutes);
