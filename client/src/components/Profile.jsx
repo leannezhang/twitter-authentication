@@ -2,19 +2,35 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 export default class Profile extends Component {
-  static propTypes = {
-    user: PropTypes.object
+  // static propTypes = {
+  //   user: PropTypes.object
+  // };
+
+  state = {
+    user: {}
   };
 
+  componentDidMount() {
+    // Fetch does not send cookies. So you should add credentials: 'include'
+    fetch("http://localhost:4000/auth/login/success", {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": true
+      }
+    })
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({ user: responseJson.user });
+        console.log("fetch responseJSON");
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
   render() {
-    const user = {
-      _id: "5c2c27dce04b501c0e493914",
-      name: "Leanne",
-      screenName: "Liyangz",
-      twitterId: "182647135",
-      profileImageUrl:
-        "http://pbs.twimg.com/profile_images/1024824614382272512/fSDOBLoW_normal.jpg"
-    };
     return (
       <div>
         <header>User profile</header>
@@ -25,10 +41,10 @@ export default class Profile extends Component {
             <th>Profile Picture</th>
           </tr>
           <tr>
-            <td>{user.name}</td>
-            <td>{`@${user.screenName}`}</td>
+            <td>{this.state.user.name}</td>
+            <td>{`@${this.state.user.screenName}`}</td>
             <td>
-              <img src={user.profileImageUrl} alt="profileImage" />
+              <img src={this.state.user.profileImageUrl} alt="profileImage" />
             </td>
           </tr>
         </table>

@@ -10,7 +10,6 @@ const mongoose = require("mongoose");
 const keys = require("./config/keys");
 const cors = require("cors");
 const cookieParser = require("cookie-parser"); // parse cookie header
-
 // set up view engine
 // app.set("view engine", "ejs");
 
@@ -22,39 +21,38 @@ mongoose.connect(
   }
 );
 
+// app.use(
+//   session({
+//     secret: "secret",
+//     key: "sid",
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: { secure: false }
+//   })
+// );
+
 app.use(
-  session({
-    secret: "secret",
-    key: "sid",
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }
+  cookieSession({
+    name: "session",
+    keys: [keys.COOKIE_KEY],
+    maxAge: 24 * 60 * 60 * 100
   })
 );
 
 // parse cookies
 app.use(cookieParser());
 
-// var corsOption = {
-//   origin: true,
-//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//   credentials: true,
-//   exposedHeaders: ["x-auth-token"]
-// };
-
-// app.use(cors(corsOption));
-
 // initalize passport
 app.use(passport.initialize());
 // control our login cookie
 app.use(passport.session());
 
-// how is passport calling deseralize or searlize?
 // set up cors to allow us to accept requests from our client
 app.use(
   cors({
-    origin: true,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE"
+    origin: "http://localhost:3000", // allow to server to accept request from different origin
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true // allow session cookie from browser to pass through
   })
 );
 
@@ -62,6 +60,8 @@ app.use(
 app.use("/auth", authRoutes);
 
 const authCheck = (req, res, next) => {
+  // console.log(req.session.passport.user);
+  // console.log(req.session.views);
   if (!req.user) {
     res.status(401).json({
       authenticated: false,

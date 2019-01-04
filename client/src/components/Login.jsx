@@ -38,8 +38,7 @@ export default class Login extends Component {
     });
 
     authenticatedPromise.then(() => {
-      // authenticated succeed
-      //   handleSetAuthentication(!authenticated);
+      handleSetAuthentication(!authenticated);
     });
   };
 }
