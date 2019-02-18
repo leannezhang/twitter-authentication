@@ -4,6 +4,8 @@
 
 ![Demo](client/src/images/demo.gif)
 
+---
+
 ### Server
 
 Run on express server
@@ -24,5 +26,3 @@ yarn run start
 ```
 
 Go to localhost:3000
-
----
