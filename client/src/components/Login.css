@@ -1,7 +1,0 @@
-.loginContainer {
-  min-height: 100vh; /* set the height to be 100% of viewport height */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}

@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const passport = require("passport");
+const CLIENT_HOME_PAGE_URL = "http://localhost:3000";
 
 // when login is successful, retrieve user info
 router.get("/login/success", (req, res) => {
@@ -10,8 +11,6 @@ router.get("/login/success", (req, res) => {
       user: req.user,
       cookies: req.cookies
     });
-  } else {
-    res.redirect("/login/failed");
   }
 });
 
@@ -26,7 +25,8 @@ router.get("/login/failed", (req, res) => {
 // auth logout
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect("/");
+  // Redirect to client
+  res.redirect(CLIENT_HOME_PAGE_URL);
 });
 
 // auth with twitter
@@ -36,7 +36,7 @@ router.get("/twitter", passport.authenticate("twitter"));
 router.get(
   "/twitter/redirect",
   passport.authenticate("twitter", {
-    successRedirect: "http://localhost:3000",
+    successRedirect: CLIENT_HOME_PAGE_URL,
     failureRedirect: "/auth/login/failed"
   })
 );
