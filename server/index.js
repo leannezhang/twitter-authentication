@@ -10,8 +10,6 @@ const mongoose = require("mongoose");
 const keys = require("./config/keys");
 const cors = require("cors");
 const cookieParser = require("cookie-parser"); // parse cookie header
-// set up view engine
-// app.set("view engine", "ejs");
 
 // connect to mongodb
 mongoose.connect(
