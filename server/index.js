@@ -71,7 +71,6 @@ const authCheck = (req, res, next) => {
   }
 };
 
-// optional: hoem page
 // if it's already login, send the profile response,
 // otherwise, send a 401 response that the user is not authenticated
 // authCheck before navigating to home page

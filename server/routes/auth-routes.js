@@ -14,7 +14,7 @@ router.get("/login/success", (req, res) => {
   }
 });
 
-// when login failed
+// when login failed, send failed msg
 router.get("/login/failed", (req, res) => {
   res.status(401).json({
     success: false,
@@ -22,10 +22,9 @@ router.get("/login/failed", (req, res) => {
   });
 });
 
-// auth logout
+// When logout, redirect to client
 router.get("/logout", (req, res) => {
   req.logout();
-  // Redirect to client
   res.redirect(CLIENT_HOME_PAGE_URL);
 });
 
