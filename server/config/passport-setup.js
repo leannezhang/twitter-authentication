@@ -6,7 +6,6 @@ const User = require("../models/user-model");
 // serialize the user.id to save in the cookie session
 // so the browser will remember the user when login
 passport.serializeUser((user, done) => {
-  // parameters: error, user
   done(null, user.id);
 });
 
