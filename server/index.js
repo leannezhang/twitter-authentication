@@ -12,22 +12,9 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser"); // parse cookie header
 
 // connect to mongodb
-mongoose.connect(
-  keys.MONGODB_URI,
-  () => {
-    console.log("connected to mongo db");
-  }
-);
-
-// app.use(
-//   session({
-//     secret: "secret",
-//     key: "sid",
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie: { secure: false }
-//   })
-// );
+mongoose.connect(keys.MONGODB_URI, () => {
+  console.log("connected to mongo db");
+});
 
 app.use(
   cookieSession({
@@ -74,7 +61,6 @@ const authCheck = (req, res, next) => {
 // if it's already login, send the profile response,
 // otherwise, send a 401 response that the user is not authenticated
 // authCheck before navigating to home page
-// question - how is cookie send to the browser?
 app.get("/", authCheck, (req, res) => {
   res.status(200).json({
     authenticated: true,
