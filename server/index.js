@@ -29,7 +29,7 @@ app.use(cookieParser());
 
 // initalize passport
 app.use(passport.initialize());
-// control our login cookie
+// deserialize cookie from the browser
 app.use(passport.session());
 
 // set up cors to allow us to accept requests from our client
@@ -40,14 +40,11 @@ app.use(
     credentials: true // allow session cookie from browser to pass through
   })
 );
-//app.options("*", cors());
 
 // set up routes
 app.use("/auth", authRoutes);
 
 const authCheck = (req, res, next) => {
-  // console.log(req.session.passport.user);
-  // console.log(req.session.views);
   if (!req.user) {
     res.status(401).json({
       authenticated: false,

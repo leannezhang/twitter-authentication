@@ -26,3 +26,10 @@ yarn run start
 ```
 
 Go to localhost:3000
+
+### Instructions
+
+- Rename /server/config/keys.copy.js to /server/config/keys.js and add your keys
+- You can follow my online tutorial
+  server: https://medium.com/p/9ffa6f49ef0
+  client: https://medium.com/@leannezhang/login-logout-page-using-react-5989eb289047
