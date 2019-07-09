@@ -43,8 +43,9 @@ passport.use(
         if (newUser) {
           done(null, newUser);
         }
+      } else {
+        done(null, currentUser);
       }
-      done(null, currentUser);
     }
   )
 );
