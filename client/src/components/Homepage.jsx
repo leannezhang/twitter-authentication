@@ -32,6 +32,7 @@ export default class HomePage extends Component {
     })
       .then(response => {
         if (response.status === 200) return response.json();
+        throw new Error("Failed to authenticate user");
       })
       .then(responseJson => {
         this.setState({
@@ -42,7 +43,7 @@ export default class HomePage extends Component {
       .catch(error => {
         this.setState({
           authenticated: false,
-          error: "Failed to authenticate user"
+          error: error.message
         });
       });
   }
